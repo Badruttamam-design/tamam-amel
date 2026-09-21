@@ -1,0 +1,3264 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Tamam &amp; Amel — Desain, Foto, Video, Lukisan &amp; Web</title>
+    <meta
+      name="description"
+      content="Portofolio Tamam & Amel — studio kreatif dari Indonesia: desain, fotografi, video editing, lukisan, dan pengembangan web full-stack."
+    />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0f0e15" />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    <!-- Tema & deteksi fitur dijalankan sebelum render agar tidak berkedip -->
+    <script>
+      (() => {
+        const d = document.documentElement;
+        d.classList.add("js");
+        if (!CSS.supports("animation-timeline: view()"))
+          d.classList.add("no-sda");
+        // Mode ringan: perangkat dengan CPU/RAM kecil atau mode hemat data
+        const n = navigator;
+        if (
+          (n.hardwareConcurrency || 8) <= 4 ||
+          (n.deviceMemory || 8) <= 4 ||
+          (n.connection && n.connection.saveData)
+        )
+          d.classList.add("lite");
+        let t = null;
+        try {
+          t = localStorage.getItem("theme");
+        } catch (e) {}
+        if (!t)
+          t = matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark";
+        d.dataset.theme = t;
+        // Intro pembuka: tampil setiap kali web dibuka (dilewati jika pengguna memilih animasi minimal)
+        try {
+          if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            d.classList.add("is-loading");
+            setTimeout(() => d.classList.remove("is-loading"), 5000); // pengaman bila script gagal
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Lewati ke konten</a>
+
+    <!-- Intro pembuka -->
+    <div class="loader" aria-hidden="true">
+      <p class="loader__names">
+        <span>Tamam</span><em>&amp;</em><span>Amel</span>
+      </p>
+      <p class="loader__tag">desain · foto · video · lukisan · kode</p>
+      <p class="loader__count"><span id="loaderNum">0</span></p>
+      <div class="loader__bar"><i></i></div>
+      <p class="loader__skip">klik untuk lewati</p>
+    </div>
+
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <div class="bg" aria-hidden="true">
+      <div class="bg__aurora"><span></span><span></span><span></span></div>
+      <div class="bg__grid"></div>
+      <div class="bg__grid bg__grid--glow"></div>
+      <div class="bg__twinkles">
+        <i style="--x: 8%; --y: 22%; --s: 14px; --d: 0s"></i
+        ><i style="--x: 22%; --y: 70%; --s: 10px; --d: 1.3s"></i
+        ><i style="--x: 35%; --y: 12%; --s: 12px; --d: 2.4s"></i
+        ><i style="--x: 48%; --y: 88%; --s: 16px; --d: 0.7s"></i
+        ><i style="--x: 63%; --y: 30%; --s: 10px; --d: 3.1s"></i
+        ><i style="--x: 74%; --y: 64%; --s: 14px; --d: 1.8s"></i
+        ><i style="--x: 86%; --y: 18%; --s: 12px; --d: 2.8s"></i
+        ><i style="--x: 92%; --y: 82%; --s: 10px; --d: 0.2s"></i
+        ><i style="--x: 15%; --y: 46%; --s: 9px; --d: 3.6s"></i
+        ><i style="--x: 55%; --y: 55%; --s: 11px; --d: 4.2s"></i>
+      </div>
+      <div class="bg__grain"></div>
+    </div>
+
+    <!-- ============================ NAV ============================ -->
+    <header class="nav">
+      <a
+        href="#beranda"
+        class="logo"
+        aria-label="Tamam &amp; Amel — kembali ke beranda"
+      >
+        <span class="logo__mark" aria-hidden="true">&amp;</span>
+        <span class="logo__text">tamam<em>&amp;</em>amel</span>
+      </a>
+
+      <nav aria-label="Navigasi utama">
+        <ul class="nav__links">
+          <li><a href="#tentang">Tentang</a></li>
+          <li><a href="#tim">Tim</a></li>
+          <li><a href="#karya">Karya</a></li>
+          <li><a href="#galeri">Galeri</a></li>
+          <li><a href="#proses">Proses</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav__actions">
+        <button
+          class="icon-btn theme-toggle"
+          id="themeToggle"
+          type="button"
+          aria-label="Ganti tema"
+        >
+          <svg
+            class="icon-sun"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+            />
+          </svg>
+          <svg
+            class="icon-moon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M20.99 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.78 9.79Z" />
+          </svg>
+        </button>
+        <a href="#kontak" class="btn btn--glow btn--sm nav__cta"
+          >Hubungi kami</a
+        >
+        <button
+          class="icon-btn menu-btn"
+          type="button"
+          popovertarget="mobileMenu"
+          aria-label="Buka menu"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <path d="M4 9h16M4 15h10" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Menu mobile: Popover API + @starting-style -->
+    <div class="mobile-menu" id="mobileMenu" popover>
+      <button
+        class="icon-btn mobile-menu__close"
+        type="button"
+        popovertarget="mobileMenu"
+        popovertargetaction="hide"
+        aria-label="Tutup menu"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+      <ul class="mobile-menu__links">
+        <li style="--i: 0"><a href="#tentang">Tentang</a></li>
+        <li style="--i: 1"><a href="#tim">Tim</a></li>
+        <li style="--i: 2"><a href="#peran">Peran</a></li>
+        <li style="--i: 2"><a href="#karya">Karya</a></li>
+        <li style="--i: 3"><a href="#galeri">Galeri</a></li>
+        <li style="--i: 4"><a href="#proses">Proses</a></li>
+        <li style="--i: 5"><a href="#perjalanan">Perjalanan</a></li>
+        <li style="--i: 6"><a href="#album">Album</a></li>
+        <li style="--i: 6"><a href="#faq">FAQ</a></li>
+        <li style="--i: 7"><a href="#kontak">Kontak</a></li>
+      </ul>
+      <p class="mono small muted">halo@tamamamel.studio</p>
+    </div>
+
+    <main id="main">
+      <!-- ============================ HERO ============================ -->
+      <section class="hero" id="beranda" data-cursor-mode="paint">
+        <canvas class="paint" aria-hidden="true"></canvas>
+        <div class="orb" aria-hidden="true">
+          <div class="orb__glow"></div>
+          <div class="orb__glass"></div>
+          <div class="orb__ring" style="--rx: 74deg; --ry: -16deg"><i></i></div>
+          <div
+            class="orb__ring orb__ring--dashed"
+            style="--rx: 64deg; --ry: 22deg"
+          >
+            <i></i>
+          </div>
+        </div>
+
+        <!-- Ikon melayang: bergoyang + ikut mouse (parallax) -->
+        <div class="floaters" aria-hidden="true">
+          <span
+            class="floater"
+            style="
+              --x: 60%;
+              --y: 20%;
+              --depth: 28;
+              --r: -12deg;
+              --c: var(--g1);
+              --t: 6s;
+              --k: 0;
+            "
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="m9.06 11.9 8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08"
+              />
+              <path
+                d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z"
+              />
+            </svg>
+          </span>
+          <span
+            class="floater"
+            style="
+              --x: 88%;
+              --y: 14%;
+              --depth: 18;
+              --r: 10deg;
+              --c: var(--g2);
+              --t: 7s;
+              --k: 1;
+            "
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"
+              />
+              <circle cx="12" cy="13" r="3" />
+            </svg>
+          </span>
+          <span
+            class="floater"
+            style="
+              --x: 93%;
+              --y: 60%;
+              --depth: 34;
+              --r: -8deg;
+              --c: oklch(0.74 0.2 350);
+              --t: 5.5s;
+              --k: 2;
+            "
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"
+              />
+              <path d="m6.2 5.3 3.1 3.9" />
+              <path d="m12.4 3.4 3.1 4" />
+              <path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
+            </svg>
+          </span>
+          <span
+            class="floater"
+            style="
+              --x: 64%;
+              --y: 76%;
+              --depth: 22;
+              --r: 14deg;
+              --c: var(--g3);
+              --t: 6.5s;
+              --k: 3;
+            "
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m16 18 6-6-6-6" />
+              <path d="m8 6-6 6 6 6" />
+            </svg>
+          </span>
+          <span
+            class="floater"
+            style="
+              --x: 78%;
+              --y: 86%;
+              --depth: 40;
+              --r: -16deg;
+              --c: oklch(0.78 0.15 65);
+              --t: 7.5s;
+              --k: 4;
+            "
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+              <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+              <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+              <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+              <path
+                d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.55-2.5 5.55-5.55C21.97 6.01 17.46 2 12 2z"
+              />
+            </svg>
+          </span>
+          <span
+            class="floater floater--sm"
+            style="
+              --x: 72%;
+              --y: 34%;
+              --depth: 12;
+              --r: 6deg;
+              --c: oklch(0.72 0.2 350);
+              --t: 5s;
+              --k: 5;
+            "
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+              <path
+                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+              />
+            </svg>
+          </span>
+        </div>
+
+        <div class="container hero__inner">
+          <p class="badge intro">
+            <span class="pulse" aria-hidden="true"></span>Halo, kami Tamam &amp;
+            Amel — tersedia untuk proyek baru
+          </p>
+
+          <h1
+            class="hero__title"
+            aria-label="Kami bikin desain, foto, video, lukisan, dan website yang terasa hidup."
+          >
+            <span class="line" aria-hidden="true"
+              ><span class="wobble">Kami bikin</span></span
+            >
+            <span class="line" aria-hidden="true"
+              ><span
+                ><span class="rotator"
+                  ><b style="--i: 0; --c: var(--g1)">desain</b
+                  ><b style="--i: 1; --c: var(--g2)">foto</b
+                  ><b style="--i: 2; --c: oklch(0.72 0.19 350)">video</b
+                  ><b style="--i: 3; --c: var(--g3)">lukisan</b
+                  ><b style="--i: 4; --c: oklch(0.76 0.16 60)">website</b></span
+                ></span
+              ></span
+            >
+            <span class="line" aria-hidden="true"
+              ><span
+                ><span class="wobble">yang</span>
+                <em class="serif gradient-text">terasa hidup.</em></span
+              ></span
+            >
+          </h1>
+
+          <div class="hero__row">
+            <p class="hero__lead intro" style="--d: 6">
+              Studio kreatif suami-istri dari Indonesia. Amel mendesain,
+              memotret, mengedit video, dan melukis; Tamam membangun website
+              &amp; aplikasi full-stack —
+              <mark class="hl">dari ide sampai rilis.</mark>
+            </p>
+            <div class="hero__cta intro" style="--d: 7">
+              <a class="btn btn--primary magnetic" href="#karya">
+                Lihat karya
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
+              <a class="btn btn--ghost magnetic" href="#kontak">Ngobrol yuk</a>
+            </div>
+          </div>
+
+          <div class="proof intro" style="--d: 8">
+            <div class="proof__avatars" aria-hidden="true">
+              <span style="--h: 350"
+                ><img src="aset/amel-avatar.webp" alt="" /></span
+              ><span style="--h: 130"
+                ><img src="aset/tamam-avatar.webp" alt=""
+              /></span>
+            </div>
+            <p>
+              <strong>Amel &amp; Tamam</strong><br />desain · foto · video ·
+              lukisan · kode
+            </p>
+          </div>
+        </div>
+
+        <a class="scroll-cue" href="#tentang"
+          ><span>Scroll</span><i aria-hidden="true"></i
+        ></a>
+        <p class="paint-hint" aria-hidden="true">
+          ✎ Gerakkan kursor — ikut melukis bareng Amel
+        </p>
+      </section>
+
+      <!-- ============================ MARQUEE ============================ -->
+      <section class="marquees" aria-label="Layanan dan alat">
+        <div class="marquee marquee--accent">
+          <div class="marquee__group">
+            <span>Desain Grafis</span><b>✦</b><span>Fotografi</span><b>✦</b
+            ><span>Video Editing</span><b>✦</b><span>Lukisan</span><b>✦</b
+            ><span>Branding</span><b>✦</b><span>Web Development</span><b>✦</b
+            ><span>Full-stack App</span><b>✦</b>
+          </div>
+          <div class="marquee__group" aria-hidden="true">
+            <span>Desain Grafis</span><b>✦</b><span>Fotografi</span><b>✦</b
+            ><span>Video Editing</span><b>✦</b><span>Lukisan</span><b>✦</b
+            ><span>Branding</span><b>✦</b><span>Web Development</span><b>✦</b
+            ><span>Full-stack App</span><b>✦</b>
+          </div>
+        </div>
+        <div class="marquee marquee--outline">
+          <div class="marquee__group">
+            <span>Figma</span><b>●</b><span class="stroke">Lightroom</span
+            ><b>●</b><span>Kanvas</span><b>●</b
+            ><span class="stroke">Premiere Pro</span><b>●</b><span>Laravel</span
+            ><b>●</b><span class="stroke">React</span><b>●</b
+            ><span>Node.js</span><b>●</b><span class="stroke">PostgreSQL</span
+            ><b>●</b>
+          </div>
+          <div class="marquee__group" aria-hidden="true">
+            <span>Figma</span><b>●</b><span class="stroke">Lightroom</span
+            ><b>●</b><span>Kanvas</span><b>●</b
+            ><span class="stroke">Premiere Pro</span><b>●</b><span>Laravel</span
+            ><b>●</b><span class="stroke">React</span><b>●</b
+            ><span>Node.js</span><b>●</b><span class="stroke">PostgreSQL</span
+            ><b>●</b>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ SHOWREEL (scroll expand) ============================ -->
+      <section class="reel" aria-label="Showreel">
+        <div class="reel__sticky">
+          <div class="reel__frame">
+            <div class="reel__media" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="reel__content">
+              <p class="reel__eyebrow">Showreel 2026 · diedit oleh Amel</p>
+              <p class="reel__title">
+                Desain. <em class="serif">Seni.</em> Kode.
+              </p>
+              <a class="reel__play" href="#karya">
+                <span class="reel__play-icon" aria-hidden="true"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5Z"
+                    /></svg
+                ></span>
+                Lihat karya kami
+              </a>
+            </div>
+
+            <!-- Panel editor video: playhead & timecode digerakkan oleh scroll -->
+            <div class="nle" aria-hidden="true">
+              <div class="nle__top">
+                <span class="nle__rec">● REC</span>
+                <span class="nle__tc"></span>
+                <span class="nle__meta">Showreel_FINAL_v7.mp4 · 24fps</span>
+              </div>
+              <div class="nle__tracks">
+                <div class="nle__track nle__track--v2">
+                  <b>V2</b>
+                  <div class="nle__lane">
+                    <span
+                      class="clip"
+                      style="--x: 1%; --w: 13%; --c: oklch(0.9 0.2 125)"
+                      >Judul</span
+                    >
+                    <span
+                      class="clip"
+                      style="--x: 56%; --w: 15%; --c: oklch(0.9 0.2 125)"
+                      >Teks</span
+                    >
+                    <span
+                      class="clip"
+                      style="--x: 86%; --w: 13%; --c: oklch(0.9 0.2 125)"
+                      >Logo</span
+                    >
+                  </div>
+                </div>
+                <div class="nle__track">
+                  <b>V1</b>
+                  <div class="nle__lane">
+                    <span
+                      class="clip"
+                      style="--x: 0%; --w: 24%; --c: oklch(0.8 0.15 65)"
+                      >rasa_market.mov</span
+                    >
+                    <span
+                      class="clip"
+                      style="--x: 24.5%; --w: 26%; --c: oklch(0.74 0.16 40)"
+                      >senja_pesisir.mov</span
+                    >
+                    <span
+                      class="clip"
+                      style="--x: 51%; --w: 22%; --c: oklch(0.72 0.18 290)"
+                      >nebula_ui.mov</span
+                    >
+                    <span
+                      class="clip"
+                      style="--x: 73.5%; --w: 26.5%; --c: oklch(0.76 0.1 60)"
+                      >warna_nusantara.mov</span
+                    >
+                  </div>
+                </div>
+                <div class="nle__track nle__track--audio">
+                  <b>A1</b>
+                  <div class="nle__lane"><span class="wave"></span></div>
+                </div>
+                <i class="nle__playhead"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ ABOUT (scroll text reveal) ============================ -->
+      <section class="about" id="tentang" aria-labelledby="about-label">
+        <div class="container about__sticky">
+          <p class="eyebrow" id="about-label"><span>(01)</span> Tentang kami</p>
+          <p class="about__text" data-split>
+            Kami percaya karya yang baik lahir dari pertemuan <em>rasa</em> dan
+            <em>logika</em>. Amel menghadirkan rasa lewat desain, foto, video,
+            dan lukisan; Tamam menghadirkan logika lewat kode yang rapi dan
+            sistem yang andal. Bersama, kami membantu brand dan individu tampil
+            <em>jujur</em>, indah, dan bekerja dengan baik.
+          </p>
+          <div class="about__foot">
+            <svg
+              class="signature"
+              viewBox="0 0 560 120"
+              role="img"
+              aria-label="Tanda tangan: Amel &amp; Tamam"
+            >
+              <text x="6" y="92">Amel &amp; Tamam</text>
+            </svg>
+            <a class="link-arrow" href="#tim"
+              >Kenalan dengan kami <span aria-hidden="true">↓</span></a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ CINCIN TEKS 3D ============================ -->
+      <section class="ring3d" aria-labelledby="ring-title">
+        <div class="ring3d__scene">
+          <div
+            class="ring3d__spin"
+            data-ring="DESAIN ✦ FOTO ✦ VIDEO ✦ LUKISAN ✦ KODE ✦ "
+            aria-hidden="true"
+          ></div>
+          <p class="ring3d__center" id="ring-title">
+            Semua dikerjakan<br />di <em class="serif">satu atap.</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================ CERMIN (zoom masuk saat scroll) ============================ -->
+      <section class="mirror" aria-label="Di balik cermin">
+        <div class="mirror__sticky">
+          <div class="mirror__photo">
+            <img
+              src="aset/cermin-zoom.webp"
+              alt="Tamam menatap cermin; bayangan Amel tersenyum di dalamnya"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="mirror__shine" aria-hidden="true"></span>
+          </div>
+          <div class="mirror__scrim" aria-hidden="true"></div>
+          <div class="container mirror__lines">
+            <p class="mirror__line mirror__line--1">
+              Tamam membangun <em class="serif">strukturnya</em> —
+            </p>
+            <p class="mirror__line mirror__line--2">
+              — Amel memberinya <em class="serif">jiwa.</em>
+            </p>
+          </div>
+          <p class="mirror__hint" aria-hidden="true" data-hide-after=".06">
+            scroll · masuk ke cermin
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================ TIM (bento) ============================ -->
+      <section class="section" id="tim">
+        <svg
+          class="doodle"
+          viewBox="0 0 100 100"
+          style="
+            --s: 5.5rem;
+            --c: var(--g1);
+            --rot: 12deg;
+            top: 4rem;
+            right: 6%;
+          "
+          aria-hidden="true"
+        >
+          <path
+            pathLength="1"
+            d="M50 8 L61 38 L93 38 L67 57 L77 88 L50 69 L23 88 L33 57 L7 38 L39 38 Z"
+          />
+        </svg>
+        <svg
+          class="doodle"
+          viewBox="0 0 100 100"
+          style="
+            --s: 7rem;
+            --c: oklch(0.74 0.2 350);
+            --rot: -8deg;
+            bottom: 1rem;
+            left: 3%;
+          "
+          aria-hidden="true"
+        >
+          <path
+            pathLength="1"
+            d="M5 50 C 15 20, 25 80, 35 50 S 55 20, 65 50 S 85 80, 95 50"
+          />
+        </svg>
+        <div class="container">
+          <header class="section-head">
+            <div>
+              <p class="eyebrow"><span>(02)</span> Tim</p>
+              <h2 class="section-title reveal">
+                Dua orang, <em class="serif">satu studio.</em>
+              </h2>
+            </div>
+            <p class="section-desc reveal">
+              Amel mengurus rasa: desain, foto, video, dan lukisan. Tamam
+              mengurus logika: kode, server, dan data. Anda cukup bicara dengan
+              <mark class="hl">satu tim.</mark>
+            </p>
+          </header>
+
+          <div class="bento crop">
+            <article class="card card--person card--amel reveal">
+              <div class="profile">
+                <div class="avatar" aria-hidden="true">
+                  <span><img src="aset/amel-avatar.webp" alt="" /></span>
+                </div>
+                <div>
+                  <h3 class="profile__name">Ameliatus Sholihah</h3>
+                  <p class="profile__role">
+                    Desainer · Fotografer · Video Editor · Pelukis
+                  </p>
+                </div>
+              </div>
+              <p class="status" data-status="amel">
+                <i></i><span>Amel sedang berkarya</span>
+              </p>
+              <p class="profile__bio">
+                Mata dan tangan di balik semua visual kami — dari identitas
+                brand, sesi foto, video, sampai lukisan di atas kanvas.
+              </p>
+              <ul class="chips">
+                <li>Desain grafis</li>
+                <li>Branding</li>
+                <li>Fotografi</li>
+                <li>Video editing</li>
+                <li>Lukisan</li>
+              </ul>
+              <ul class="palette" aria-hidden="true">
+                <li style="--sw: oklch(0.62 0.14 40)"><span>Terakota</span></li>
+                <li style="--sw: oklch(0.78 0.14 70)"><span>Senja</span></li>
+                <li style="--sw: oklch(0.48 0.1 235)"><span>Laut</span></li>
+                <li style="--sw: oklch(0.6 0.11 150)"><span>Daun</span></li>
+                <li style="--sw: oklch(0.93 0.035 90)"><span>Gading</span></li>
+              </ul>
+            </article>
+
+            <article
+              class="card card--person card--tamam reveal"
+              style="--d: 1"
+            >
+              <div class="profile">
+                <div class="avatar" aria-hidden="true">
+                  <span><img src="aset/tamam-avatar.webp" alt="" /></span>
+                </div>
+                <div>
+                  <h3 class="profile__name">Badruttamam</h3>
+                  <p class="profile__role">Full-stack Developer</p>
+                </div>
+              </div>
+              <p class="status" data-status="tamam">
+                <i></i><span>Tamam sedang ngoding</span>
+              </p>
+              <p class="profile__bio">
+                Mengubah desain Amel menjadi website dan aplikasi yang cepat,
+                aman, dan mudah dikelola — dari database sampai tampilan.
+              </p>
+              <ul class="chips">
+                <li>Frontend</li>
+                <li>Backend &amp; API</li>
+                <li>Database</li>
+                <li>Deploy</li>
+              </ul>
+              <pre
+                class="code"
+                aria-hidden="true"
+              ><code><span class="k">const</span> <span class="v">tamam</span> = {
+  role: <span class="s">"Full-stack Developer"</span>,
+  stack: [<span class="s">"Laravel"</span>, <span class="s">"React"</span>, <span class="s">"Node"</span>],
+  kopiPerHari: <span class="n">3</span>, <span class="c">// ☕ minimal</span>
+  partner: <span class="s">"Amel"</span>, <span class="c">// ♥ desain &amp; seni</span>
+};</code></pre>
+            </article>
+
+            <article class="card card--loc reveal" style="--d: 1">
+              <p class="card__label">Lokasi</p>
+              <div class="globe" aria-hidden="true"><span></span></div>
+              <div>
+                <p class="card__big">Indonesia</p>
+                <p class="mono small muted" id="clock">--:--:-- WIB</p>
+              </div>
+            </article>
+
+            <article class="card card--stat reveal" style="--d: 2">
+              <p class="card__label">Proyek &amp; karya</p>
+              <p class="stat">
+                <span class="counter" style="--to: 42" aria-hidden="true"></span
+                ><span class="sr-only">42</span
+                ><span class="stat__plus">+</span>
+              </p>
+              <p class="small muted">
+                desain, foto, video, lukisan &amp; aplikasi web.
+              </p>
+            </article>
+
+            <article class="card card--stack reveal" style="--d: 2">
+              <div class="card__head">
+                <p class="card__label">Alat andalan</p>
+                <p class="small muted">Seni &amp; desain · kode</p>
+              </div>
+              <div class="tech-marquee">
+                <div class="tech-row">
+                  <div class="tech-group">
+                    <span class="tech"
+                      ><i style="--c: oklch(0.7 0.2 20)"></i>Figma</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.65 0.15 245)"></i>Photoshop</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.75 0.16 65)"></i>Illustrator</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.72 0.13 230)"></i>Lightroom</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.62 0.2 300)"></i>Premiere
+                      Pro</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.7 0.12 200)"></i>DaVinci
+                      Resolve</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: var(--fg)"></i>Procreate</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.62 0.14 40)"></i>Cat &amp;
+                      kanvas</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.78 0.14 70)"></i>Kamera</span
+                    >
+                  </div>
+                  <div class="tech-group" aria-hidden="true">
+                    <span class="tech"
+                      ><i style="--c: oklch(0.7 0.2 20)"></i>Figma</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.65 0.15 245)"></i>Photoshop</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.75 0.16 65)"></i>Illustrator</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.72 0.13 230)"></i>Lightroom</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.62 0.2 300)"></i>Premiere
+                      Pro</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.7 0.12 200)"></i>DaVinci
+                      Resolve</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: var(--fg)"></i>Procreate</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.62 0.14 40)"></i>Cat &amp;
+                      kanvas</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.78 0.14 70)"></i>Kamera</span
+                    >
+                  </div>
+                </div>
+                <div class="tech-row tech-row--reverse">
+                  <div class="tech-group">
+                    <span class="tech"
+                      ><i style="--c: oklch(0.63 0.22 27)"></i>Laravel</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.8 0.13 220)"></i>React</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: var(--fg)"></i>Next.js</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.72 0.17 145)"></i>Node.js</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.6 0.1 245)"></i>PostgreSQL</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.68 0.15 240)"></i>Docker</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.78 0.13 210)"></i>Tailwind
+                      CSS</span
+                    >
+                  </div>
+                  <div class="tech-group" aria-hidden="true">
+                    <span class="tech"
+                      ><i style="--c: oklch(0.63 0.22 27)"></i>Laravel</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.8 0.13 220)"></i>React</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: var(--fg)"></i>Next.js</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.72 0.17 145)"></i>Node.js</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.6 0.1 245)"></i>PostgreSQL</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.68 0.15 240)"></i>Docker</span
+                    >
+                    <span class="tech"
+                      ><i style="--c: oklch(0.78 0.13 210)"></i>Tailwind
+                      CSS</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="card card--services reveal" style="--d: 1">
+              <p class="card__label">Layanan</p>
+              <ul class="services">
+                <li>
+                  <span>01</span>
+                  <div>
+                    <h3>Desain &amp; Branding <em class="owner">Amel</em></h3>
+                    <p>Logo, identitas visual, sampai desain UI.</p>
+                  </div>
+                </li>
+                <li>
+                  <span>02</span>
+                  <div>
+                    <h3>Foto &amp; Video <em class="owner">Amel</em></h3>
+                    <p>
+                      Foto produk, potret, video promosi &amp; konten sosmed.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span>03</span>
+                  <div>
+                    <h3>Lukisan Pesanan <em class="owner">Amel</em></h3>
+                    <p>Karya custom untuk rumah, kantor, atau hadiah.</p>
+                  </div>
+                </li>
+                <li>
+                  <span>04</span>
+                  <div>
+                    <h3>Web &amp; Aplikasi <em class="owner">Tamam</em></h3>
+                    <p>Website, sistem, dan aplikasi full-stack yang andal.</p>
+                  </div>
+                </li>
+              </ul>
+            </article>
+
+            <article class="card card--now reveal" style="--d: 2">
+              <p class="card__label">
+                <span class="live-dot" aria-hidden="true"></span>Sedang
+                dikerjakan
+              </p>
+              <p class="now__title">Galeri online untuk koleksi lukisan Amel</p>
+              <div>
+                <div class="progress" aria-hidden="true"><span></span></div>
+                <p class="mono small muted">72% · target rilis Nov 2026</p>
+              </div>
+            </article>
+
+            <article class="card card--cta reveal" style="--d: 3">
+              <p class="card__label">Punya proyek?</p>
+              <p class="cta__title">
+                Ayo bikin sesuatu yang <em class="serif">indah.</em>
+              </p>
+              <button
+                class="cta__btn"
+                type="button"
+                data-copy="halo@tamamamel.studio"
+              >
+                Salin email
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M7 17 17 7M8 7h9v9" />
+                </svg>
+              </button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ GANTI PERAN (baju berganti saat scroll) ============================ -->
+      <section
+        class="wardrobe wardrobe--photo"
+        id="peran"
+        aria-labelledby="peran-title"
+      >
+        <div class="wardrobe__sticky">
+          <div class="container wardrobe__grid">
+            <div class="wardrobe__text">
+              <p class="eyebrow"><span>(03)</span> Ganti peran</p>
+              <h2 class="section-title" id="peran-title">
+                Satu Amel, <em class="serif">empat peran.</em>
+              </h2>
+              <p class="section-desc">
+                Scroll pelan-pelan — bajunya ikut berganti sesuai peran.
+              </p>
+              <div class="roles">
+                <div class="role slotted s0" style="--rc: oklch(0.7 0.14 255)">
+                  <p class="role__num">01 / 04</p>
+                  <h3 class="role__name">Desainer</h3>
+                  <p class="role__desc">
+                    Logo, identitas visual, dan tampilan aplikasi — dirancang
+                    detail sampai ke pilihan warna.
+                  </p>
+                  <ul class="chips">
+                    <li>Branding</li>
+                    <li>UI/UX</li>
+                    <li>Poster</li>
+                  </ul>
+                </div>
+                <div class="role slotted s1" style="--rc: oklch(0.74 0.13 95)">
+                  <p class="role__num">02 / 04</p>
+                  <h3 class="role__name">Fotografer</h3>
+                  <p class="role__desc">
+                    Kamera selalu siap bidik. Foto produk, potret, sampai
+                    dokumentasi acara.
+                  </p>
+                  <ul class="chips">
+                    <li>Produk</li>
+                    <li>Potret</li>
+                    <li>Acara</li>
+                  </ul>
+                </div>
+                <div class="role slotted s2" style="--rc: oklch(0.66 0.22 295)">
+                  <p class="role__num">03 / 04</p>
+                  <h3 class="role__name">Video editor</h3>
+                  <p class="role__desc">
+                    Mode fokus: potong, color grading, sampai jadi cerita yang
+                    enak ditonton.
+                  </p>
+                  <ul class="chips">
+                    <li>Reels</li>
+                    <li>Film pendek</li>
+                    <li>Color grading</li>
+                  </ul>
+                </div>
+                <div class="role slotted s3" style="--rc: oklch(0.66 0.16 40)">
+                  <p class="role__num">04 / 04</p>
+                  <h3 class="role__name">Pelukis</h3>
+                  <p class="role__desc">
+                    Dari sketsa ke kanvas. Lukisan pesanan untuk rumah, kantor,
+                    atau hadiah.
+                  </p>
+                  <ul class="chips">
+                    <li>Kanvas</li>
+                    <li>Mural</li>
+                    <li>Pesanan</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="wardrobe__bar" aria-hidden="true"><span></span></div>
+              <ol class="wardrobe__steps" aria-hidden="true">
+                <li>Desain</li>
+                <li>Foto</li>
+                <li>Video</li>
+                <li>Lukis</li>
+              </ol>
+            </div>
+
+            <div class="wardrobe__stage" aria-hidden="true">
+              <div class="wardrobe__words">
+                <span class="wword slotted s0">DESAINER</span
+                ><span class="wword slotted s1">FOTOGRAFER</span
+                ><span class="wword slotted s2">VIDEO EDITOR</span
+                ><span class="wword slotted s3">PELUKIS</span>
+              </div>
+              <div class="wardrobe__blobs">
+                <span
+                  class="wblob slotted s0"
+                  style="--rc: oklch(0.7 0.14 255)"
+                ></span
+                ><span
+                  class="wblob slotted s1"
+                  style="--rc: oklch(0.74 0.13 95)"
+                ></span
+                ><span
+                  class="wblob slotted s2"
+                  style="--rc: oklch(0.66 0.22 295)"
+                ></span
+                ><span
+                  class="wblob slotted s3"
+                  style="--rc: oklch(0.66 0.16 40)"
+                ></span>
+              </div>
+              <div class="wardrobe__floor"></div>
+              <div class="wardrobe__figure">
+                <!-- Foto Amel dengan baju berbeda. Semua dipotong agar posisi & ukuran wajah sama,
+                   jadi saat berganti hanya baju & latarnya yang berubah. -->
+                <div class="look slotted s0">
+                  <img src="aset/amel-peran-1.webp" alt="" decoding="async" />
+                </div>
+                <div class="look slotted s1">
+                  <img
+                    src="aset/amel-peran-2.webp"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="look slotted s2">
+                  <img
+                    src="aset/amel-peran-3.webp"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="look slotted s3">
+                  <img
+                    src="aset/amel-peran-4.webp"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+              <div class="wardrobe__badges">
+                <span
+                  class="wbadge slotted s0"
+                  style="--rc: oklch(0.7 0.14 255)"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z"
+                    />
+                    <path
+                      d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18"
+                    />
+                    <path d="m2.3 2.3 7.286 7.286" />
+                    <circle cx="11" cy="11" r="2" /></svg
+                  >Sage &amp; mauve</span
+                >
+                <span
+                  class="wbadge slotted s1"
+                  style="--rc: oklch(0.74 0.13 95)"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"
+                    />
+                    <circle cx="12" cy="13" r="3" /></svg
+                  >Biru langit</span
+                >
+                <span
+                  class="wbadge slotted s2"
+                  style="--rc: oklch(0.66 0.22 295)"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"
+                    />
+                    <path d="m6.2 5.3 3.1 3.9" />
+                    <path d="m12.4 3.4 3.1 4" />
+                    <path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" /></svg
+                  >Taupe santai</span
+                >
+                <span
+                  class="wbadge slotted s3"
+                  style="--rc: oklch(0.66 0.16 40)"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+                    <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+                    <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+                    <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+                    <path
+                      d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.55-2.5 5.55-5.55C21.97 6.01 17.46 2 12 2z"
+                    /></svg
+                  >Cokelat susu</span
+                >
+              </div>
+              <div class="wardrobe__flash"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ MALAM TAMAM DESIGN (lampu menyala saat scroll) ============================ -->
+      <section class="night" aria-labelledby="night-title">
+        <div class="night__sticky">
+          <div class="night__photo">
+            <img
+              src="aset/malam-tamam.webp"
+              alt="Tamam bersandar di mobil hitam bertuliskan Tamam Design pada malam hari"
+              loading="lazy"
+              decoding="async"
+            />
+            <span
+              class="beam"
+              style="--x: 15.4%; --y: 59.2%; --s: 1; --k: 0"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="beam"
+              style="--x: 64%; --y: 63.7%; --s: 1.15; --k: 1"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="beam beam--fog"
+              style="--x: 10.8%; --y: 73.3%; --s: 0.7; --k: 2"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="beam beam--fog"
+              style="--x: 65.8%; --y: 81.2%; --s: 0.75; --k: 3"
+              aria-hidden="true"
+            ></span>
+            <span class="night__dark" aria-hidden="true"></span>
+          </div>
+          <div class="night__streaks" aria-hidden="true">
+            <i
+              class=""
+              style="--y: 88%; --t: 3.2s; --d: 0s; --c: oklch(0.95 0.05 230)"
+            ></i
+            ><i
+              class="is-back"
+              style="--y: 92%; --t: 2.4s; --d: -1.1s; --c: oklch(0.7 0.22 25)"
+            ></i
+            ><i
+              class=""
+              style="--y: 95%; --t: 3.8s; --d: -2.3s; --c: oklch(0.92 0.08 90)"
+            ></i
+            ><i
+              class="is-back"
+              style="--y: 90%; --t: 2.9s; --d: -0.6s; --c: oklch(0.72 0.2 20)"
+            ></i
+            ><i
+              class=""
+              style="--y: 97%; --t: 4.4s; --d: -3s; --c: oklch(0.9 0.06 220)"
+            ></i>
+          </div>
+          <div class="night__scrim" aria-hidden="true"></div>
+          <div class="container night__text">
+            <p class="night__label">full-stack · sejak 2020</p>
+            <h2 class="night__neon" id="night-title">
+              <span>Tamam</span> <span>Design</span>
+            </h2>
+            <p class="night__lead">
+              Website, sistem, dan aplikasi dibangun rapi — dari database sampai
+              tampilan. Tetap ngebut, siang maupun malam.
+            </p>
+            <ul class="chips night__chips">
+              <li>Laravel</li>
+              <li>React</li>
+              <li>Node.js</li>
+              <li>PostgreSQL</li>
+              <li>Docker</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ TAMAM NGODING LIVE (kode diketik → website terbangun) ============================ -->
+      <section class="coding" aria-labelledby="coding-title">
+        <div class="coding__sticky">
+          <div class="container coding__head">
+            <p class="paintover__label">Tamam · live coding</p>
+            <h2 class="section-title" id="coding-title">
+              Dari baris kode <em class="serif">jadi website.</em>
+            </h2>
+          </div>
+          <div class="container coding__grid" aria-hidden="true">
+            <div class="editor">
+              <div class="mock__bar">
+                <i></i><i></i><i></i><span>kopi-senja / index.html</span>
+              </div>
+              <ol class="editor__code">
+                <li style="--i: 0">
+                  <code
+                    ><span class="t">&lt;nav&gt;</span>kopi senja. · Menu ·
+                    Lokasi<span class="t">&lt;/nav&gt;</span></code
+                  >
+                </li>
+                <li style="--i: 1">
+                  <code
+                    ><span class="t">&lt;h1&gt;</span>Kopi lokal, diseduh
+                    pelan.<span class="t">&lt;/h1&gt;</span></code
+                  >
+                </li>
+                <li style="--i: 2">
+                  <code
+                    ><span class="t">&lt;p&gt;</span>Biji pilihan petani
+                    Nusantara.<span class="t">&lt;/p&gt;</span></code
+                  >
+                </li>
+                <li style="--i: 3">
+                  <code
+                    ><span class="t">&lt;button&gt;</span>Pesan sekarang<span
+                      class="t"
+                      >&lt;/button&gt;</span
+                    ></code
+                  >
+                </li>
+                <li style="--i: 4">
+                  <code
+                    ><span class="p">.hero</span> {
+                    <span class="a">background</span>:
+                    <span class="v">#2a1d17</span>; }</code
+                  >
+                </li>
+                <li style="--i: 5">
+                  <code
+                    ><span class="p">.btn</span> {
+                    <span class="a">background</span>:
+                    <span class="v">#e8a13a</span>;
+                    <span class="a">border-radius</span>:
+                    <span class="v">99px</span>; }</code
+                  >
+                </li>
+                <li style="--i: 6">
+                  <code
+                    ><span class="t">&lt;Menu</span>
+                    <span class="a">items</span>=<span class="s"
+                      >{daftarKopi}</span
+                    >
+                    <span class="t">/&gt;</span></code
+                  >
+                </li>
+                <li style="--i: 7">
+                  <code
+                    ><span class="p">.menu</span> {
+                    <span class="a">display</span>: <span class="v">grid</span>;
+                    <span class="a">gap</span>: <span class="v">1rem</span>;
+                    }</code
+                  >
+                </li>
+                <li style="--i: 8">
+                  <code
+                    ><span class="c">// sentuhan akhir: animasi ✨</span></code
+                  >
+                </li>
+                <li style="--i: 9">
+                  <code
+                    ><span class="k">$ npm run deploy</span>
+                    <span class="ok">✓ live</span></code
+                  >
+                </li>
+              </ol>
+            </div>
+            <div class="site">
+              <div class="mock__bar">
+                <i></i><i></i><i></i><span>kopisenja.id</span>
+              </div>
+              <div class="site__body">
+                <nav class="site__nav bld" style="--k: 0">
+                  <b>kopi senja.</b><span>Menu</span><span>Lokasi</span>
+                </nav>
+                <div class="site__hero">
+                  <p class="site__title bld" style="--k: 1">
+                    Kopi lokal,<br />diseduh pelan.
+                  </p>
+                  <p class="site__lead bld" style="--k: 2">
+                    Biji pilihan petani Nusantara.
+                  </p>
+                  <span class="site__btn bld" style="--k: 3"
+                    >Pesan sekarang →</span
+                  >
+                  <span class="site__spark bld" style="--k: 8">✨</span>
+                  <span class="site__live bld" style="--k: 9">● LIVE</span>
+                </div>
+                <div class="site__cards bld" style="--k: 6">
+                  <div
+                    class="menu-card"
+                    style="--c: 0; --cup: oklch(0.78 0.08 60)"
+                  >
+                    <i></i><b>Es Kopi Susu</b><small>Rp22rb</small>
+                  </div>
+                  <div
+                    class="menu-card"
+                    style="--c: 1; --cup: oklch(0.4 0.07 45)"
+                  >
+                    <i></i><b>Kopi Tubruk</b><small>Rp15rb</small>
+                  </div>
+                  <div
+                    class="menu-card"
+                    style="--c: 2; --cup: oklch(0.7 0.1 70)"
+                  >
+                    <i></i><b>Latte Aren</b><small>Rp25rb</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="container coding__caption">
+            Scroll — kodenya diketik, websitenya ikut jadi.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================ KARYA (stacking cards) ============================ -->
+      <section class="section projects" id="karya">
+        <svg
+          class="doodle"
+          viewBox="0 0 100 100"
+          style="
+            --s: 6.5rem;
+            --c: var(--g2);
+            --rot: 18deg;
+            top: 5rem;
+            right: 34%;
+          "
+          aria-hidden="true"
+        >
+          <path
+            pathLength="1"
+            d="M10 80 C 30 20, 60 18, 86 44 M86 44 L70 42 M86 44 L81 28"
+          />
+        </svg>
+        <div class="container">
+          <header class="section-head">
+            <div>
+              <p class="eyebrow"><span>(04)</span> Karya pilihan</p>
+              <h2 class="section-title reveal">
+                Karya yang kami <em class="serif">banggakan.</em>
+              </h2>
+            </div>
+            <p class="section-desc reveal">
+              Dari toko online dan aplikasi web sampai seri foto dan koleksi
+              lukisan — sebagian <mark class="hl">dikerjakan berdua</mark>,
+              sebagian sendiri-sendiri.
+            </p>
+          </header>
+
+          <ol class="stack" style="--n: 4">
+            <!-- 01 -->
+            <li class="stack__item" style="--i: 1">
+              <article
+                class="project"
+                data-cursor="Lihat ↗"
+                style="--c1: oklch(0.8 0.15 65); --c2: oklch(0.7 0.2 10)"
+              >
+                <div class="project__info">
+                  <div class="project__top">
+                    <span>01 / 04</span><span>E-commerce · 2025</span>
+                  </div>
+                  <h3 class="project__title">Rasa Market</h3>
+                  <p class="project__credit">
+                    <span>Amel</span> brand, foto &amp; video
+                    <span>Tamam</span> full-stack
+                  </p>
+                  <p class="project__desc">
+                    Toko online untuk brand kuliner lokal. Amel merancang
+                    identitas, memotret produk, dan membuat video promosinya;
+                    Tamam membangun tokonya lengkap dengan pembayaran dan
+                    manajemen stok.
+                  </p>
+                  <ul class="chips">
+                    <li>Branding</li>
+                    <li>Foto produk</li>
+                    <li>Laravel</li>
+                    <li>Midtrans</li>
+                  </ul>
+                  <a href="#" class="btn btn--ghost btn--sm project__link"
+                    >Lihat studi kasus
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" />
+                    </svg>
+                  </a>
+                </div>
+                <div class="project__visual">
+                  <div class="mock" aria-hidden="true">
+                    <div class="mock__bar">
+                      <i></i><i></i><i></i><span>rasa.market</span>
+                    </div>
+                    <div class="shop">
+                      <div class="shop__nav">
+                        <b>rasa.</b><span></span><span></span><span></span
+                        ><em>🛒 2</em>
+                      </div>
+                      <div class="shop__hero">
+                        <div>
+                          <small>Koleksi baru</small
+                          ><strong>Rempah Nusantara</strong>
+                        </div>
+                        <span>Belanja sekarang</span>
+                      </div>
+                      <div class="shop__grid">
+                        <div class="product" style="--p: oklch(0.72 0.17 45)">
+                          <div class="product__img"></div>
+                          <span></span><b>Rp89rb</b>
+                        </div>
+                        <div class="product" style="--p: oklch(0.66 0.2 15)">
+                          <div class="product__img"></div>
+                          <span></span><b>Rp124rb</b>
+                        </div>
+                        <div class="product" style="--p: oklch(0.82 0.15 95)">
+                          <div class="product__img"></div>
+                          <span></span><b>Rp67rb</b>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </li>
+
+            <!-- 02 -->
+            <li class="stack__item" style="--i: 2">
+              <article
+                class="project"
+                data-cursor="Lihat ↗"
+                style="--c1: oklch(0.72 0.16 40); --c2: oklch(0.55 0.16 300)"
+              >
+                <div class="project__info">
+                  <div class="project__top">
+                    <span>02 / 04</span><span>Fotografi · 2025</span>
+                  </div>
+                  <h3 class="project__title">Senja di Pesisir</h3>
+                  <p class="project__credit">
+                    <span>Amel</span> fotografi &amp; editing
+                  </p>
+                  <p class="project__desc">
+                    Seri foto tentang cahaya sore di pesisir — dicetak terbatas
+                    di kertas fine art dan dijual lewat galeri online.
+                  </p>
+                  <ul class="chips">
+                    <li>Fotografi</li>
+                    <li>Lightroom</li>
+                    <li>Cetak fine art</li>
+                  </ul>
+                  <a href="#" class="btn btn--ghost btn--sm project__link"
+                    >Lihat seri foto
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" />
+                    </svg>
+                  </a>
+                </div>
+                <div class="project__visual">
+                  <div class="polaroids" aria-hidden="true">
+                    <figure
+                      class="polaroid"
+                      style="
+                        --r: -11deg;
+                        --x: -60%;
+                        --y: 6%;
+                        --sky1: oklch(0.5 0.15 300);
+                        --sky2: oklch(0.7 0.17 20);
+                        --sky3: oklch(0.86 0.13 70);
+                        --sea: oklch(0.32 0.07 265);
+                      "
+                    >
+                      <div class="photo"></div>
+                      <figcaption>pesisir, 17.42</figcaption>
+                    </figure>
+                    <figure
+                      class="polaroid"
+                      style="
+                        --r: 12deg;
+                        --x: 60%;
+                        --y: 8%;
+                        --sky1: oklch(0.42 0.1 260);
+                        --sky2: oklch(0.62 0.16 330);
+                        --sky3: oklch(0.8 0.14 40);
+                        --sea: oklch(0.28 0.06 250);
+                      "
+                    >
+                      <div class="photo"></div>
+                      <figcaption>dermaga, 18.05</figcaption>
+                    </figure>
+                    <figure
+                      class="polaroid"
+                      style="
+                        --r: 2deg;
+                        --x: 0%;
+                        --y: -5%;
+                        --sky1: oklch(0.62 0.13 250);
+                        --sky2: oklch(0.8 0.13 50);
+                        --sky3: oklch(0.9 0.12 85);
+                        --sea: oklch(0.38 0.08 230);
+                      "
+                    >
+                      <div class="photo"></div>
+                      <figcaption>pulang, 17.58</figcaption>
+                    </figure>
+                  </div>
+                </div>
+              </article>
+            </li>
+
+            <!-- 03 -->
+            <li class="stack__item" style="--i: 3">
+              <article
+                class="project"
+                data-cursor="Lihat ↗"
+                style="--c1: oklch(0.68 0.22 290); --c2: oklch(0.82 0.13 200)"
+              >
+                <div class="project__info">
+                  <div class="project__top">
+                    <span>03 / 04</span><span>Web app · 2026</span>
+                  </div>
+                  <h3 class="project__title">Nebula Finance</h3>
+                  <p class="project__credit">
+                    <span>Amel</span> UI/UX <span>Tamam</span> full-stack
+                  </p>
+                  <p class="project__desc">
+                    Dashboard keuangan real-time. Amel mendesain antarmuka yang
+                    tenang dan mudah dibaca; Tamam membangun API, database, dan
+                    tampilannya.
+                  </p>
+                  <ul class="chips">
+                    <li>UI/UX</li>
+                    <li>React</li>
+                    <li>Node.js</li>
+                    <li>PostgreSQL</li>
+                  </ul>
+                  <a href="#" class="btn btn--ghost btn--sm project__link"
+                    >Lihat studi kasus
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" />
+                    </svg>
+                  </a>
+                </div>
+                <div class="project__visual">
+                  <div class="mock" aria-hidden="true">
+                    <div class="mock__bar">
+                      <i></i><i></i><i></i><span>nebula.finance/dashboard</span>
+                    </div>
+                    <div class="dash">
+                      <div class="dash__side">
+                        <b></b><span class="on"></span><span></span><span></span
+                        ><span></span><span></span>
+                      </div>
+                      <div class="dash__main">
+                        <div class="dash__head">
+                          <strong>Selamat pagi, Rina 👋</strong
+                          ><span class="dash__pill">Sep 2026</span>
+                        </div>
+                        <div class="dash__kpis">
+                          <div class="kpi">
+                            <small>Total saldo</small><strong>Rp128,4jt</strong
+                            ><em>▲ 12,4%</em>
+                          </div>
+                          <div class="kpi">
+                            <small>Pemasukan</small><strong>Rp36,2jt</strong
+                            ><em>▲ 8,1%</em>
+                          </div>
+                          <div class="kpi">
+                            <small>Pengeluaran</small><strong>Rp14,9jt</strong
+                            ><em class="down">▼ 3,2%</em>
+                          </div>
+                        </div>
+                        <div class="chart">
+                          <div class="chart__bars">
+                            <i style="--h: 34%"></i><i style="--h: 52%"></i
+                            ><i style="--h: 44%"></i><i style="--h: 66%"></i
+                            ><i style="--h: 58%"></i><i style="--h: 74%"></i>
+                            <i style="--h: 62%"></i><i style="--h: 82%"></i
+                            ><i style="--h: 70%"></i><i style="--h: 88%"></i
+                            ><i style="--h: 78%"></i><i style="--h: 96%"></i>
+                          </div>
+                          <svg viewBox="0 0 120 100" preserveAspectRatio="none">
+                            <path
+                              d="M5 70 L15 52 L25 58 L35 40 L45 46 L55 30 L65 38 L75 22 L85 30 L95 14 L105 22 L115 6"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </li>
+
+            <!-- 04 -->
+            <li class="stack__item" style="--i: 4">
+              <article
+                class="project"
+                data-cursor="Lihat ↗"
+                style="--c1: oklch(0.72 0.1 60); --c2: oklch(0.55 0.12 30)"
+              >
+                <div class="project__info">
+                  <div class="project__top">
+                    <span>04 / 04</span><span>Lukisan · 2026</span>
+                  </div>
+                  <h3 class="project__title">Warna Nusantara</h3>
+                  <p class="project__credit">
+                    <span>Amel</span> lukisan <span>Tamam</span> galeri online
+                  </p>
+                  <p class="project__desc">
+                    Koleksi lukisan bertema alam Nusantara, lengkap dengan
+                    galeri online tempat pengunjung bisa melihat detail tiap
+                    karya dan memesannya.
+                  </p>
+                  <ul class="chips">
+                    <li>Lukisan</li>
+                    <li>Kanvas</li>
+                    <li>Galeri online</li>
+                    <li>Laravel</li>
+                  </ul>
+                  <a href="#" class="btn btn--ghost btn--sm project__link"
+                    >Lihat koleksi
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M7 17 17 7M8 7h9v9" />
+                    </svg>
+                  </a>
+                </div>
+                <div class="project__visual">
+                  <div class="gallery" aria-hidden="true">
+                    <div class="frame frame--sm">
+                      <div class="canvas canvas--field"></div>
+                    </div>
+                    <div class="frame frame--lg">
+                      <div class="canvas canvas--land"></div>
+                      <p class="plaque">
+                        Warna Nusantara #3<br /><span>Ameliatus S. · 2026</span>
+                      </p>
+                    </div>
+                    <div class="frame frame--sm">
+                      <div class="canvas canvas--dots"></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============================ SENTUHAN (before / after) ============================ -->
+      <section class="section" id="sentuhan">
+        <svg
+          class="doodle"
+          viewBox="0 0 100 100"
+          style="
+            --s: 4.5rem;
+            --c: oklch(0.78 0.15 65);
+            --rot: 0deg;
+            top: 3rem;
+            right: 4%;
+          "
+          aria-hidden="true"
+        >
+          <path
+            pathLength="1"
+            d="M50 8 C 53 40, 60 47, 92 50 C 60 53, 53 60, 50 92 C 47 60, 40 53, 8 50 C 40 47, 47 40, 50 8 Z"
+          />
+        </svg>
+        <div class="container">
+          <header class="section-head">
+            <div>
+              <p class="eyebrow"><span>(05)</span> Sentuhan Amel</p>
+              <h2 class="section-title reveal">
+                Sebelum &amp; <em class="serif">sesudah.</em>
+              </h2>
+            </div>
+            <p class="section-desc reveal">
+              Foto mentah dari kamera vs.
+              <mark class="hl">hasil color grading Amel.</mark> Geser garisnya —
+              atau scroll saja, garisnya ikut bergerak.
+            </p>
+          </header>
+
+          <div class="ba crop reveal">
+            <div class="ba__stage" data-cursor="Geser ⇆">
+              <div class="ba__img ba__img--before">
+                <img
+                  src="aset/edit-sebelum.webp"
+                  alt="Foto mentah Tamam dan Amel, sebelum diedit"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="ba__tag">RAW</span>
+              </div>
+              <div class="ba__img ba__img--after">
+                <img
+                  src="aset/edit-sesudah.webp"
+                  alt="Foto yang sama setelah color grading"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <span class="ba__tag ba__tag--after">EDIT</span>
+              <div class="ba__track" aria-hidden="true">
+                <div class="ba__handle"><span>⇆</span></div>
+              </div>
+              <input
+                class="ba__range"
+                id="baRange"
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                aria-label="Bandingkan foto sebelum dan sesudah diedit"
+              />
+            </div>
+
+            <aside
+              class="ba__panel"
+              aria-label="Pengaturan editing yang dipakai"
+            >
+              <p class="card__label">Develop · Lightroom</p>
+              <div class="histo" aria-hidden="true"><i></i><i></i><i></i></div>
+              <ul class="adjust">
+                <li style="--v: 62%">
+                  <span>Exposure</span><b>+0,35</b><i></i>
+                </li>
+                <li style="--v: 68%"><span>Kontras</span><b>+18</b><i></i></li>
+                <li style="--v: 29%">
+                  <span>Highlights</span><b>−42</b><i></i>
+                </li>
+                <li style="--v: 42%">
+                  <span>Suhu warna</span><b>−8</b><i></i>
+                </li>
+                <li style="--v: 66%"><span>Saturasi</span><b>+20</b><i></i></li>
+                <li style="--v: 40%"><span>Vignette</span><b>−20</b><i></i></li>
+              </ul>
+              <p class="small muted">
+                Preset "Malam Kota" — dipakai juga untuk color grading video.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ SKETSA JADI LUKISAN (kuas mewarnai saat scroll) ============================ -->
+      <section class="paintover" aria-labelledby="paintover-title">
+        <div class="paintover__sticky">
+          <div class="container paintover__grid">
+            <div class="paintover__text">
+              <p class="paintover__label">Dari sketsa ke kanvas</p>
+              <h2 class="section-title" id="paintover-title">
+                Setiap karya dimulai <em class="serif">dari garis.</em>
+              </h2>
+              <p class="section-desc">
+                Scroll pelan — kuas Amel mewarnai sketsa pensil ini sapuan demi
+                sapuan.
+              </p>
+              <ol class="paintover__steps">
+                <li style="--k: 0"><span>01</span> Sketsa pensil</li>
+                <li style="--k: 1"><span>02</span> Warna dasar</li>
+                <li style="--k: 2"><span>03</span> Detail &amp; cahaya</li>
+              </ol>
+            </div>
+            <figure class="paintover__art">
+              <div class="paintover__frame">
+                <div
+                  class="paintover__canvas"
+                  role="img"
+                  aria-label="Potret Amel: sketsa pensil yang diwarnai menjadi lukisan"
+                >
+                  <img
+                    src="aset/lukis-sketsa.webp"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="paintover__color">
+                    <img
+                      src="aset/lukis-warna.webp"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+              </div>
+              <figcaption>
+                Potret Amel · pensil &amp; cat digital · 2026
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ GALERI PAMERAN 3D (jalan menyusuri lorong saat scroll) ============================ -->
+      <section class="expo" aria-labelledby="expo-title">
+        <div class="expo__sticky">
+          <div class="expo__scene" aria-hidden="true">
+            <div class="expo__room">
+              <div class="expo__ceil"></div>
+              <div class="expo__floor"></div>
+              <div class="expo__wall expo__wall--left">
+                <figure class="expo__art" style="--pos: 6%">
+                  <span class="expo__pic"
+                    ><span class="art__img canvas canvas--land"></span
+                  ></span>
+                  <figcaption><b>Bukit Pagi</b> cat di kanvas</figcaption>
+                </figure>
+                <figure class="expo__art" style="--pos: 30%">
+                  <span class="expo__pic"
+                    ><img
+                      src="aset/album-studio.webp"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                  /></span>
+                  <figcaption><b>Potret Studio</b> fotografi</figcaption>
+                </figure>
+                <figure class="expo__art" style="--pos: 54%">
+                  <span class="expo__pic"
+                    ><span class="art__img canvas canvas--field"></span
+                  ></span>
+                  <figcaption><b>Bara</b> akrilik</figcaption>
+                </figure>
+                <figure class="expo__art" style="--pos: 78%">
+                  <span class="expo__pic"
+                    ><img
+                      src="aset/album-kamera.webp"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                  /></span>
+                  <figcaption><b>Di Balik Lensa</b> fotografi</figcaption>
+                </figure>
+              </div>
+              <div class="expo__wall expo__wall--right">
+                <figure class="expo__art" style="--pos: 16%">
+                  <span class="expo__pic"
+                    ><span class="art__img canvas canvas--dots"></span
+                  ></span>
+                  <figcaption><b>Tiga Bulan</b> cat di kanvas</figcaption>
+                </figure>
+                <figure class="expo__art" style="--pos: 40%">
+                  <span class="expo__pic"
+                    ><span
+                      class="art__img photo"
+                      style="
+                        --sky1: oklch(0.5 0.15 300);
+                        --sky2: oklch(0.7 0.17 20);
+                        --sky3: oklch(0.86 0.13 70);
+                        --sea: oklch(0.32 0.07 265);
+                      "
+                    ></span
+                  ></span>
+                  <figcaption><b>Pesisir, 17.42</b> fotografi</figcaption>
+                </figure>
+                <figure class="expo__art" style="--pos: 64%">
+                  <span class="expo__pic"
+                    ><span class="art__img v-poster"
+                      ><b>KOPI</b><em>festival</em><small>12—14 DES</small
+                      ><i></i></span
+                  ></span>
+                  <figcaption><b>Festival Kopi</b> desain poster</figcaption>
+                </figure>
+                <figure class="expo__art" style="--pos: 86%">
+                  <span class="expo__pic"
+                    ><img
+                      src="aset/album-selfie.webp"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                  /></span>
+                  <figcaption><b>Pagi</b> fotografi</figcaption>
+                </figure>
+              </div>
+              <div class="expo__end">
+                <figure class="expo__art expo__art--main">
+                  <span class="expo__pic"
+                    ><img
+                      src="aset/lukis-warna.webp"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                  /></span>
+                  <figcaption>
+                    <b>Potret Amel</b> dari sketsa ke kanvas
+                  </figcaption>
+                </figure>
+                <p class="expo__thanks">✦ Terima kasih sudah berkunjung ✦</p>
+              </div>
+            </div>
+          </div>
+          <div class="container expo__text" data-hide-after=".05">
+            <p class="paintover__label">Pameran virtual</p>
+            <h2 class="expo__title" id="expo-title">
+              Selamat datang di <em class="serif">galeri Amel.</em>
+            </h2>
+            <p class="expo__hint">
+              Scroll untuk berjalan menyusuri lorong · gerakkan mouse untuk
+              melihat sekeliling
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ GALERI (filter + lightbox, View Transitions) ============================ -->
+      <section class="section" id="galeri">
+        <svg
+          class="doodle"
+          viewBox="0 0 100 100"
+          style="--s: 6rem; --c: var(--g3); --rot: -10deg; top: 4rem; left: 46%"
+          aria-hidden="true"
+        >
+          <path
+            pathLength="1"
+            d="M50 50 a4 4 0 1 1 8 0 a8 8 0 1 1 -16 0 a12 12 0 1 1 24 0 a16 16 0 1 1 -32 0 a20 20 0 1 1 40 0 a24 24 0 1 1 -48 0"
+          />
+        </svg>
+        <div class="container">
+          <header class="section-head">
+            <div>
+              <p class="eyebrow"><span>(06)</span> Galeri</p>
+              <h2 class="section-title reveal">
+                Karya Amel, <em class="serif">dari dekat.</em>
+              </h2>
+            </div>
+            <p class="section-desc reveal">
+              <mark class="hl">Klik salah satu karya</mark> untuk melihatnya
+              lebih besar. Pakai filter untuk memilah lukisan, foto, desain, dan
+              video.
+            </p>
+          </header>
+
+          <div class="filters reveal" role="group" aria-label="Filter galeri">
+            <button
+              class="filter"
+              type="button"
+              data-filter="all"
+              aria-pressed="true"
+            >
+              Semua <sup>10</sup>
+            </button>
+            <button
+              class="filter"
+              type="button"
+              data-filter="lukisan"
+              aria-pressed="false"
+            >
+              Lukisan <sup>3</sup>
+            </button>
+            <button
+              class="filter"
+              type="button"
+              data-filter="foto"
+              aria-pressed="false"
+            >
+              Foto <sup>3</sup>
+            </button>
+            <button
+              class="filter"
+              type="button"
+              data-filter="desain"
+              aria-pressed="false"
+            >
+              Desain <sup>2</sup>
+            </button>
+            <button
+              class="filter"
+              type="button"
+              data-filter="video"
+              aria-pressed="false"
+            >
+              Video <sup>2</sup>
+            </button>
+          </div>
+
+          <ul class="gallery-grid crop">
+            <li class="art art--tall" data-type="lukisan" style="--vt: art-1">
+              <button
+                class="art__btn"
+                type="button"
+                data-cursor="Buka ⤢"
+                data-meta="Lukisan · Cat di kanvas · 2026"
+                data-desc="Cahaya pertama di atas perbukitan, dilukis dari sketsa perjalanan."
+              >
+                <span
+                  class="art__img canvas canvas--land"
+                  aria-hidden="true"
+                ></span>
+                <span class="art__cap"
+                  ><b>Bukit Pagi</b><small>Lukisan</small></span
+                >
+              </button>
+            </li>
+            <li class="art" data-type="foto" style="--vt: art-2">
+              <button
+                class="art__btn"
+                type="button"
+                data-cursor="Buka ⤢"
+                data-meta="Fotografi · Seri Senja di Pesisir · 2025"
+                data-desc="Matahari tenggelam di pesisir, diambil beberapa menit sebelum gelap."
+              >
+                <span
+                  class="art__img photo"
+                  style="
+                    --sky1: oklch(0.5 0.15 300);
+                    --sky2: oklch(0.7 0.17 20);
+                    --sky3: oklch(0.86 0.13 70);
+                    --sea: oklch(0.32 0.07 265);
+                  "
+                  aria-hidden="true"
+                ></span>
+                <span class="art__cap"
+                  ><b>Pesisir, 17.42</b><small>Foto</small></span
+                >
+              </button>
+            </li>
+            <li class="art art--tall" data-type="desain" style="--vt: art-3">
+              <button
+                class="art__btn"
+                type="button"
+                data-cursor="Buka ⤢"
+                data-meta="Desain poster · 2025"
+                data-desc="Poster festival kopi lokal — tipografi tebal dan warna hangat seperti secangkir kopi susu."
+              >
+                <span class="art__img v-poster" aria-hidden="true"
+                  ><b>KOPI</b><em>festival</em
+                  ><small>12—14 DES · ALUN-ALUN</small><i></i
+                ></span>
+                <span class="art__cap"
+                  ><b>Festival Kopi</b><small>Desain</small></span
+                >
+              </button>
+            </li>
+            <li class="art" data-type="lukisan" style="--vt: art-4">
+              <button
+                class="art__btn"
+                type="button"
+                data-cursor="Buka ⤢"
+                data-meta="Lukisan · 2026"
+                data-desc="Studi warna tentang panas dan sore hari."
+              >
+                <span
+                  class="art__img canvas canvas--field"
+                  aria-hidden="true"
+                ></span>
+                <span class="art__cap"><b>Bara</b><small>Lukisan</small></span>
+              </button>
+            </li>
+            <li class="art art--wide" data-type="video" style="--vt: art-5">
+              <button
+                class="art__btn"
+                type="button"
+                data-cursor="Buka ⤢"
+                data-meta="Video · Editing &amp; color grading · 2025"
+                data-desc="Film pendek dua menit tentang perjalanan pulang kampung."
+              >
+                <span
+                  class="art__img photo is-video"
+                  style="
+                    --sky1: oklch(0.42 0.1 260);
+                    --sky2: oklch(0.62 0.16 330);
+                    --sky3: oklch(0.8 0.14 40);
+                    --sea: oklch(0.28 0.06 250);
+                  "
+                  aria-hidden="true"
+                  ><i class="play">▶</i><small class="dur">02:14</small></span
+                >
+                <span class="art__cap"><b>Pulang</b><small>Video</small></span>
+              </button>
+            </li>
+            <li class="art" data-type="lukisan" style="--vt: art-6">
+              <button
+                class="art__btn"
+                type="button"
+                data-cursor="Buka ⤢"
+                data-meta="Lukisan · 2026"
+                data-desc="Komposisi abstrak: bentuk sederhana, warna berani."
+              >
+                <span
+                  class="art__img canvas canvas--dots"
+                  aria-hidden="true"
+                ></span>
+                <span class="art__cap"
+                  ><b>Tiga Bulan</b><small>Lukisan</small></span
+                >
+              </button>
+            </li>
+            <li class="art art--tall" data-type="video" style="--vt: art-7">
+              <button
+                class="art__btn"
+                type="button"
+                data-cursor="Buka ⤢"
+                data-meta="Video · Reels 30 detik · 2025"
+                data-desc="Video promosi vertikal untuk media sosial Rasa Market."
+              >
+                <span class="art__img v-reels" aria-hidden="true"
+                  ><b>Rempah<br />Nusantara</b><i class="play">▶</i
+                  ><small class="dur">0:30</small></span
+                >
+                <span class="art__cap"
+                  ><b>Reels Rasa Market</b><small>Video</small></span
+                >
+              </button>
+            </li>
+            <li class="art" data-type="foto" style="--vt: art-8">
+              <button
+                class="art__btn"
+                type="button"
+                data-cursor="Buka ⤢"
+                data-meta="Fotografi · 2024"
+                data-desc="Lampu-lampu pasar malam, sengaja dibuat blur."
+              >
+                <span class="art__img v-bokeh" aria-hidden="true"></span>
+                <span class="art__cap"
+                  ><b>Pasar Malam</b><small>Foto</small></span
+                >
+              </button>
+            </li>
+            <li class="art art--wide" data-type="desain" style="--vt: art-9">
+              <button
+                class="art__btn"
+                type="button"
+                data-cursor="Buka ⤢"
+                data-meta="Branding · 2025"
+                data-desc="Logo, pola, dan kemasan untuk brand kuliner Rasa Market."
+              >
+                <span class="art__img v-brand" aria-hidden="true"
+                  ><b>rasa.</b><small>rempah · kopi · teh</small></span
+                >
+                <span class="art__cap"
+                  ><b>Identitas Rasa</b><small>Desain</small></span
+                >
+              </button>
+            </li>
+            <li class="art art--wide" data-type="foto" style="--vt: art-10">
+              <button
+                class="art__btn"
+                type="button"
+                data-cursor="Buka ⤢"
+                data-meta="Fotografi · Seri Senja di Pesisir · 2025"
+                data-desc="Dermaga kayu saat langit berubah ungu."
+              >
+                <span
+                  class="art__img photo"
+                  style="
+                    --sky1: oklch(0.62 0.13 250);
+                    --sky2: oklch(0.8 0.13 50);
+                    --sky3: oklch(0.9 0.12 85);
+                    --sea: oklch(0.38 0.08 230);
+                  "
+                  aria-hidden="true"
+                ></span>
+                <span class="art__cap"
+                  ><b>Dermaga, 18.05</b><small>Foto</small></span
+                >
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <dialog class="lightbox" id="lightbox" aria-labelledby="lbTitle">
+          <button
+            class="icon-btn lightbox__close"
+            type="button"
+            aria-label="Tutup"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M6 6l12 12M18 6 6 18" />
+            </svg>
+          </button>
+          <figure class="lightbox__fig">
+            <div class="lightbox__img" aria-hidden="true"></div>
+            <figcaption class="lightbox__cap">
+              <p class="card__label" id="lbMeta"></p>
+              <h3 id="lbTitle"></h3>
+              <p class="muted" id="lbDesc"></p>
+              <div class="lightbox__nav">
+                <button
+                  class="btn btn--ghost btn--sm"
+                  type="button"
+                  data-step="-1"
+                >
+                  ← Sebelumnya
+                </button>
+                <button
+                  class="btn btn--ghost btn--sm"
+                  type="button"
+                  data-step="1"
+                >
+                  Berikutnya →
+                </button>
+              </div>
+            </figcaption>
+          </figure>
+        </dialog>
+      </section>
+
+      <!-- ============================ ROLL FILM (ornamen) ============================ -->
+      <section class="filmstrip" aria-hidden="true">
+        <div class="filmstrip__band">
+          <div class="filmstrip__track">
+            <figure class="film">
+              <span class="film__pic"
+                ><span class="art__img canvas canvas--land"></span
+              ></span>
+              <figcaption>▸ 12</figcaption>
+            </figure>
+            <figure class="film">
+              <span class="film__pic"
+                ><span
+                  class="art__img photo"
+                  style="
+                    --sky1: oklch(0.5 0.15 300);
+                    --sky2: oklch(0.7 0.17 20);
+                    --sky3: oklch(0.86 0.13 70);
+                    --sea: oklch(0.32 0.07 265);
+                  "
+                ></span
+              ></span>
+              <figcaption>▸ 12A</figcaption>
+            </figure>
+            <figure class="film">
+              <span class="film__pic"
+                ><span class="art__img v-bokeh"></span
+              ></span>
+              <figcaption>▸ 13</figcaption>
+            </figure>
+            <figure class="film">
+              <span class="film__pic"
+                ><span class="art__img canvas canvas--dots"></span
+              ></span>
+              <figcaption>▸ 13A</figcaption>
+            </figure>
+            <figure class="film">
+              <span class="film__pic"
+                ><span
+                  class="art__img photo"
+                  style="
+                    --sky1: oklch(0.42 0.1 260);
+                    --sky2: oklch(0.62 0.16 330);
+                    --sky3: oklch(0.8 0.14 40);
+                    --sea: oklch(0.28 0.06 250);
+                  "
+                ></span
+              ></span>
+              <figcaption>▸ 14</figcaption>
+            </figure>
+            <figure class="film">
+              <span class="film__pic"
+                ><span class="art__img v-brand"
+                  ><b>rasa.</b><small>rempah · kopi · teh</small></span
+                ></span
+              >
+              <figcaption>▸ 14A</figcaption>
+            </figure>
+            <figure class="film">
+              <span class="film__pic"
+                ><span class="art__img canvas canvas--field"></span
+              ></span>
+              <figcaption>▸ 15</figcaption>
+            </figure>
+            <figure class="film">
+              <span class="film__pic"
+                ><span
+                  class="art__img photo"
+                  style="
+                    --sky1: oklch(0.62 0.13 250);
+                    --sky2: oklch(0.8 0.13 50);
+                    --sky3: oklch(0.9 0.12 85);
+                    --sea: oklch(0.38 0.08 230);
+                  "
+                ></span
+              ></span>
+              <figcaption>▸ 15A</figcaption>
+            </figure>
+            <figure class="film">
+              <span class="film__pic"
+                ><span class="art__img v-poster"
+                  ><b>KOPI</b><em>festival</em><small>12—14 DES</small
+                  ><i></i></span
+              ></span>
+              <figcaption>▸ 16</figcaption>
+            </figure>
+          </div>
+        </div>
+        <p class="filmstrip__label">
+          TA 400 · roll #07 · dipotret &amp; dipilih Amel
+        </p>
+      </section>
+
+      <!-- ============================ PROSES (horizontal scroll) ============================ -->
+      <section class="process" id="proses" aria-labelledby="process-title">
+        <div class="process__sticky">
+          <div class="container process__head">
+            <div>
+              <p class="eyebrow"><span>(07)</span> Proses</p>
+              <h2 class="section-title" id="process-title">
+                Dari ide ke <em class="serif">karya.</em>
+              </h2>
+            </div>
+            <p class="section-desc">
+              Empat tahap yang kami pakai di setiap proyek — transparan,
+              terukur, <mark class="hl">tanpa drama.</mark>
+            </p>
+          </div>
+
+          <div class="process__viewport">
+            <ol class="process__track">
+              <li class="step" style="--c: oklch(0.9 0.2 125)">
+                <span class="step__num">01</span>
+                <span class="step__icon" aria-hidden="true">◎</span>
+                <h3>Ngobrol dulu</h3>
+                <p>
+                  Kami dengarkan cerita, tujuan, dan selera Anda — lalu menyusun
+                  rencana dan anggaran yang jelas.
+                </p>
+                <ul class="chips">
+                  <li>Konsultasi</li>
+                  <li>Brief</li>
+                  <li>Estimasi</li>
+                </ul>
+              </li>
+              <li class="step" style="--c: oklch(0.74 0.2 350)">
+                <span class="step__num">02</span>
+                <span class="step__icon" aria-hidden="true">✎</span>
+                <h3>Rancang <small>· Amel</small></h3>
+                <p>
+                  Moodboard, desain visual, sesi foto &amp; video, atau sketsa
+                  lukisan — Anda ikut menilai sebelum lanjut.
+                </p>
+                <ul class="chips">
+                  <li>Moodboard</li>
+                  <li>Desain</li>
+                  <li>Sketsa</li>
+                </ul>
+              </li>
+              <li class="step" style="--c: oklch(0.68 0.23 295)">
+                <span class="step__num">03</span>
+                <span class="step__icon" aria-hidden="true">⌘</span>
+                <h3>Bangun <small>· Tamam</small></h3>
+                <p>
+                  Website dan aplikasi full-stack dibangun dari database sampai
+                  tampilan, diuji di berbagai perangkat.
+                </p>
+                <ul class="chips">
+                  <li>Backend</li>
+                  <li>Frontend</li>
+                  <li>Testing</li>
+                </ul>
+              </li>
+              <li class="step" style="--c: oklch(0.84 0.14 195)">
+                <span class="step__num">04</span>
+                <span class="step__icon" aria-hidden="true">↗</span>
+                <h3>Serahkan &amp; rawat</h3>
+                <p>
+                  Rilis, cetak, atau pasang di dinding — lalu kami tetap
+                  mendampingi setelahnya.
+                </p>
+                <ul class="chips">
+                  <li>Rilis</li>
+                  <li>Cetak</li>
+                  <li>Support</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+
+          <div class="container">
+            <div class="process__bar" aria-hidden="true"><span></span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ PERJALANAN ============================ -->
+      <section class="section" id="perjalanan">
+        <svg
+          class="doodle"
+          viewBox="0 0 100 100"
+          style="
+            --s: 7rem;
+            --c: oklch(0.74 0.2 350);
+            --rot: 6deg;
+            top: 9rem;
+            right: 7%;
+          "
+          aria-hidden="true"
+        >
+          <path
+            pathLength="1"
+            d="M18 55 C 18 22, 80 14, 84 46 C 88 80, 24 88, 16 58 C 12 36, 46 20, 72 28"
+          />
+        </svg>
+        <div class="container">
+          <header class="section-head">
+            <div>
+              <p class="eyebrow"><span>(08)</span> Perjalanan</p>
+              <h2 class="section-title reveal">
+                Cerita kami <em class="serif">sejauh ini.</em>
+              </h2>
+            </div>
+            <a class="btn btn--ghost reveal" href="#">
+              Unduh profil studio
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 4v12M6 10l6 6 6-6M5 20h14" />
+              </svg>
+            </a>
+          </header>
+
+          <ol class="timeline">
+            <li class="tl-item reveal">
+              <p class="tl-date">2026 — Sekarang</p>
+              <div>
+                <h3 class="tl-role">Tamam &amp; Amel Studio</h3>
+                <p class="tl-org">Studio kreatif berdua · Indonesia</p>
+                <p class="tl-desc">
+                  Menggabungkan keahlian kami dalam satu studio: desain,
+                  fotografi, lukisan, dan pengembangan web full-stack di bawah
+                  satu atap.
+                </p>
+                <ul class="chips">
+                  <li>Kolaborasi</li>
+                  <li>Studio</li>
+                </ul>
+              </div>
+            </li>
+            <li class="tl-item reveal">
+              <p class="tl-date">2022 — 2026</p>
+              <div>
+                <h3 class="tl-role">Ameliatus Sholihah</h3>
+                <p class="tl-org">
+                  Desainer, fotografer, video editor &amp; pelukis lepas
+                </p>
+                <p class="tl-desc">
+                  Mengerjakan identitas brand, foto produk dan acara, video
+                  promosi, serta lukisan pesanan untuk klien personal maupun
+                  bisnis.
+                </p>
+                <ul class="chips">
+                  <li>Branding</li>
+                  <li>Fotografi</li>
+                  <li>Video</li>
+                  <li>Lukisan</li>
+                </ul>
+              </div>
+            </li>
+            <li class="tl-item reveal">
+              <p class="tl-date">2020 — 2026</p>
+              <div>
+                <h3 class="tl-role">Badruttamam</h3>
+                <p class="tl-org">Full-stack developer</p>
+                <p class="tl-desc">
+                  Membangun website, sistem informasi, dan aplikasi web — dari
+                  perancangan database, API, sampai antarmuka.
+                </p>
+                <ul class="chips">
+                  <li>Laravel</li>
+                  <li>React</li>
+                  <li>PostgreSQL</li>
+                </ul>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============================ ALBUM (foto jatuh & menumpuk saat scroll) ============================ -->
+      <section class="album" id="album" aria-labelledby="album-title">
+        <div class="album__sticky">
+          <div class="container album__grid">
+            <div class="album__text">
+              <p class="eyebrow"><span>(09)</span> Album</p>
+              <h2 class="section-title" id="album-title">
+                Momen di luar <em class="serif">layar.</em>
+              </h2>
+              <p class="section-desc">
+                Sedikit cerita di balik Tamam &amp; Amel. Scroll terus — fotonya
+                menumpuk sendiri.
+              </p>
+              <p class="album__count"><b>05</b> foto · Tamam &amp; Amel</p>
+            </div>
+            <div class="album__pile">
+              <figure
+                class="snap"
+                style="
+                  --i: 0;
+                  --x: -22%;
+                  --y: 6%;
+                  --r: -9deg;
+                  --fx: -40vw;
+                  --tape: oklch(0.86 0.1 150);
+                "
+              >
+                <img
+                  src="aset/album-studio.webp"
+                  alt="Potret Amel di studio foto"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>sesi foto studio ✦</figcaption>
+              </figure>
+              <figure
+                class="snap"
+                style="
+                  --i: 1;
+                  --x: 24%;
+                  --y: -6%;
+                  --r: 8deg;
+                  --fx: 40vw;
+                  --tape: oklch(0.85 0.12 350);
+                "
+              >
+                <img
+                  src="aset/album-selfie.webp"
+                  alt="Selfie Amel di pagi hari"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>selfie pagi</figcaption>
+              </figure>
+              <figure
+                class="snap snap--wide"
+                style="
+                  --i: 2;
+                  --x: -12%;
+                  --y: -12%;
+                  --r: 5deg;
+                  --fx: -30vw;
+                  --tape: oklch(0.9 0.12 95);
+                "
+              >
+                <img
+                  src="aset/album-tamam.webp"
+                  alt="Tamam bersandar di mobil hitam bertuliskan Tamam Design pada malam hari"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>Tamam &amp; si hitam</figcaption>
+              </figure>
+              <figure
+                class="snap"
+                style="
+                  --i: 3;
+                  --x: 18%;
+                  --y: 10%;
+                  --r: -6deg;
+                  --fx: 30vw;
+                  --tape: oklch(0.84 0.1 250);
+                "
+              >
+                <img
+                  src="aset/album-kamera.webp"
+                  alt="Amel memotret dengan kamera"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>di balik lensa</figcaption>
+              </figure>
+              <figure
+                class="snap snap--wide"
+                style="
+                  --i: 4;
+                  --x: 0%;
+                  --y: -2%;
+                  --r: -2deg;
+                  --fx: 0vw;
+                  --tape: oklch(0.88 0.13 70);
+                "
+              >
+                <img
+                  src="aset/album-berdua.webp"
+                  alt="Tamam dan Amel berdiri di depan mobil pada malam hari"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>Tamam &amp; Amel ♥</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ FAQ (exclusive accordion) ============================ -->
+      <section class="section" id="faq">
+        <svg
+          class="doodle"
+          viewBox="0 0 100 100"
+          style="
+            --s: 7rem;
+            --c: var(--g1);
+            --rot: -14deg;
+            bottom: 3rem;
+            left: 4%;
+          "
+          aria-hidden="true"
+        >
+          <path
+            pathLength="1"
+            d="M5 50 C 15 20, 25 80, 35 50 S 55 20, 65 50 S 85 80, 95 50"
+          />
+        </svg>
+        <svg
+          class="doodle"
+          viewBox="0 0 100 100"
+          style="
+            --s: 3.5rem;
+            --c: var(--g2);
+            --rot: -20deg;
+            top: 5rem;
+            right: 5%;
+          "
+          aria-hidden="true"
+        >
+          <path
+            pathLength="1"
+            d="M50 8 L61 38 L93 38 L67 57 L77 88 L50 69 L23 88 L33 57 L7 38 L39 38 Z"
+          />
+        </svg>
+        <div class="container faq">
+          <header class="faq__head">
+            <p class="eyebrow"><span>(10)</span> FAQ</p>
+            <h2 class="section-title reveal">
+              Pertanyaan yang <em class="serif">sering muncul.</em>
+            </h2>
+            <p class="section-desc reveal">
+              Belum terjawab? Tanyakan langsung — kami senang ngobrol.
+            </p>
+            <a class="link-arrow reveal" href="#kontak"
+              >Tanya kami <span aria-hidden="true">→</span></a
+            >
+          </header>
+
+          <div class="faq__list">
+            <details class="qa reveal" name="faq" open>
+              <summary>
+                Berapa lama satu proyek dikerjakan?<i aria-hidden="true"></i>
+              </summary>
+              <div class="qa__body">
+                <p>
+                  Tergantung skalanya. Desain logo biasanya 1–2 minggu, sesi
+                  foto &amp; video bisa dijadwalkan dalam seminggu, sedangkan
+                  website 3–8 minggu. Estimasi pasti kami berikan setelah
+                  ngobrol.
+                </p>
+              </div>
+            </details>
+            <details class="qa reveal" name="faq">
+              <summary>
+                Bisa pesan satu layanan saja?<i aria-hidden="true"></i>
+              </summary>
+              <div class="qa__body">
+                <p>
+                  Bisa. Anda boleh pesan desain saja, foto atau video saja,
+                  lukisan saja, atau website saja. Kalau digabung, hasilnya
+                  lebih konsisten karena ditangani satu tim dari awal.
+                </p>
+              </div>
+            </details>
+            <details class="qa reveal" name="faq">
+              <summary>
+                Bagaimana sistem pembayarannya?<i aria-hidden="true"></i>
+              </summary>
+              <div class="qa__body">
+                <p>
+                  Umumnya uang muka di awal dan pelunasan saat karya diserahkan.
+                  Untuk proyek besar, pembayaran bisa dibagi per tahap sesuai
+                  progres.
+                </p>
+              </div>
+            </details>
+            <details class="qa reveal" name="faq">
+              <summary>
+                Berapa kali revisi yang didapat?<i aria-hidden="true"></i>
+              </summary>
+              <div class="qa__body">
+                <p>
+                  Jumlah putaran revisi disepakati di awal dan tertulis di
+                  penawaran, supaya jelas untuk kedua pihak. Revisi kecil
+                  setelah itu biasanya tetap kami bantu.
+                </p>
+              </div>
+            </details>
+            <details class="qa reveal" name="faq">
+              <summary>
+                Apakah melayani klien di luar kota?<i aria-hidden="true"></i>
+              </summary>
+              <div class="qa__body">
+                <p>
+                  Tentu. Desain, video editing, dan website bisa dikerjakan
+                  jarak jauh. Untuk sesi foto atau pemasangan lukisan di luar
+                  kota, biaya perjalanan dibicarakan terpisah.
+                </p>
+              </div>
+            </details>
+            <details class="qa reveal" name="faq">
+              <summary>
+                Setelah website jadi, siapa yang merawatnya?<i
+                  aria-hidden="true"
+                ></i>
+              </summary>
+              <div class="qa__body">
+                <p>
+                  Tamam menyediakan dukungan setelah rilis: pembaruan, backup,
+                  dan perbaikan bug. Anda juga akan diajari cara mengelola
+                  konten sendiri.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ KONTAK ============================ -->
+      <section class="contact" id="kontak">
+        <!-- Stiker dekoratif yang bisa diseret -->
+        <div class="stickers" aria-hidden="true">
+          <span
+            class="sticker"
+            data-cursor="Seret ✋"
+            style="
+              --x: 6%;
+              --y: 10%;
+              --r: -12deg;
+              --bg: oklch(0.52 0.1 50);
+              --ink: oklch(0.98 0 0);
+            "
+            >☕ kopi dulu</span
+          >
+          <span
+            class="sticker"
+            data-cursor="Seret ✋"
+            style="--x: 79%; --y: 54%; --r: 8deg; --bg: oklch(0.76 0.16 350)"
+            >Amel ♥ Tamam</span
+          >
+          <span
+            class="sticker sticker--round"
+            data-cursor="Seret ✋"
+            style="
+              --x: 86%;
+              --y: 32%;
+              --r: -6deg;
+              --bg: oklch(0.62 0.22 295);
+              --ink: oklch(0.98 0 0);
+            "
+            >&lt;/&gt;</span
+          >
+          <span
+            class="sticker sticker--badge"
+            data-cursor="Seret ✋"
+            style="
+              --x: 9%;
+              --y: 52%;
+              --r: 14deg;
+              --bg: var(--g1);
+              --ink: var(--accent-ink);
+            "
+            >open for<br />work ✦</span
+          >
+          <span
+            class="sticker sticker--round"
+            data-cursor="Seret ✋"
+            style="--x: 4%; --y: 80%; --r: 10deg; --bg: oklch(0.85 0.13 195)"
+            >📷</span
+          >
+          <span
+            class="sticker sticker--round"
+            data-cursor="Seret ✋"
+            style="--x: 90%; --y: 82%; --r: -14deg; --bg: oklch(0.9 0.15 90)"
+            >🎨</span
+          >
+          <span
+            class="sticker"
+            data-cursor="Seret ✋"
+            style="
+              --x: 72%;
+              --y: 4%;
+              --r: -4deg;
+              --bg: oklch(0.22 0.02 285);
+              --ink: oklch(0.98 0 0);
+            "
+            >🎬 action!</span
+          >
+        </div>
+
+        <div class="container contact__inner">
+          <a
+            href="mailto:halo@tamamamel.studio"
+            class="spin-badge"
+            aria-label="Kirim email ke halo@tamamamel.studio"
+          >
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <defs>
+                <path
+                  id="badgePath"
+                  d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"
+                />
+              </defs>
+              <text>
+                <textPath href="#badgePath" textLength="488">
+                  Tersedia untuk proyek ✦ Mari ngobrol ✦
+                </textPath>
+              </text>
+            </svg>
+            <span
+              ><svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M7 17 17 7M8 7h9v9" /></svg
+            ></span>
+          </a>
+
+          <p class="eyebrow"><span>(11)</span> Kontak</p>
+          <h2 class="contact__title reveal">
+            Punya ide besar?<br /><em class="serif gradient-text"
+              >Mari wujudkan.</em
+            >
+          </h2>
+          <p class="contact__lead reveal">
+            Kami menerima proyek desain, foto &amp; video, lukisan pesanan, dan
+            pengembangan web. Ceritakan idemu —
+            <mark class="hl">kami balas dalam 24 jam.</mark>
+          </p>
+
+          <div class="contact__actions reveal">
+            <a
+              class="btn btn--primary btn--lg magnetic"
+              href="mailto:halo@tamamamel.studio"
+            >
+              halo@tamamamel.studio
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M7 17 17 7M8 7h9v9" />
+              </svg>
+            </a>
+            <button
+              class="btn btn--ghost btn--lg magnetic"
+              type="button"
+              data-copy="halo@tamamamel.studio"
+            >
+              Salin email
+            </button>
+          </div>
+
+          <ul class="socials reveal">
+            <li>
+              <a href="#">Instagram <span aria-hidden="true">↗</span></a>
+            </li>
+            <li>
+              <a href="#">Behance <span aria-hidden="true">↗</span></a>
+            </li>
+            <li>
+              <a href="#">GitHub <span aria-hidden="true">↗</span></a>
+            </li>
+            <li>
+              <a href="#">WhatsApp <span aria-hidden="true">↗</span></a>
+            </li>
+          </ul>
+
+          <!-- Brief builder: tanpa server, menyusun email siap kirim -->
+          <form
+            class="brief reveal"
+            id="brief"
+            data-email="halo@tamamamel.studio"
+          >
+            <div class="brief__head">
+              <p class="brief__title">Susun brief singkat</p>
+              <p class="small muted">±1 menit · langsung jadi email</p>
+            </div>
+
+            <fieldset class="brief__group">
+              <legend>Butuh bantuan apa?</legend>
+              <label class="pick"
+                ><input
+                  type="checkbox"
+                  id="svcDesain"
+                  name="layanan"
+                  value="Desain &amp; branding"
+                />
+                Desain &amp; branding</label
+              >
+              <label class="pick"
+                ><input
+                  type="checkbox"
+                  id="svcFoto"
+                  name="layanan"
+                  value="Foto"
+                />
+                Foto</label
+              >
+              <label class="pick"
+                ><input
+                  type="checkbox"
+                  id="svcVideo"
+                  name="layanan"
+                  value="Video"
+                />
+                Video</label
+              >
+              <label class="pick"
+                ><input
+                  type="checkbox"
+                  id="svcLukisan"
+                  name="layanan"
+                  value="Lukisan pesanan"
+                />
+                Lukisan pesanan</label
+              >
+              <label class="pick"
+                ><input
+                  type="checkbox"
+                  id="svcWeb"
+                  name="layanan"
+                  value="Website / aplikasi"
+                />
+                Website / aplikasi</label
+              >
+            </fieldset>
+
+            <fieldset class="brief__group">
+              <legend>Perkiraan anggaran</legend>
+              <div class="budget">
+                <input
+                  type="range"
+                  id="budget"
+                  name="anggaran"
+                  min="0"
+                  max="4"
+                  step="1"
+                  value="1"
+                  aria-describedby="budgetOut"
+                />
+                <output id="budgetOut" for="budget">Rp5–15 jt</output>
+              </div>
+            </fieldset>
+
+            <div class="brief__row">
+              <label class="field" for="briefName"
+                >Nama
+                <input
+                  type="text"
+                  id="briefName"
+                  name="nama"
+                  autocomplete="name"
+                  required
+                  placeholder="Nama Anda"
+                />
+              </label>
+              <label class="field" for="briefContact"
+                >Email / WhatsApp
+                <input
+                  type="text"
+                  id="briefContact"
+                  name="kontak"
+                  autocomplete="email"
+                  placeholder="Opsional"
+                />
+              </label>
+            </div>
+
+            <label class="field" for="briefMsg"
+              >Ceritakan idemu
+              <textarea
+                id="briefMsg"
+                name="pesan"
+                rows="3"
+                placeholder="Contoh: butuh logo dan foto produk untuk kedai kopi yang buka bulan depan."
+              ></textarea>
+            </label>
+
+            <div class="brief__foot">
+              <p class="small muted">
+                Tombol ini membuka aplikasi email Anda dengan brief yang sudah
+                tersusun.
+              </p>
+              <button class="btn btn--primary magnetic" type="submit">
+                Kirim brief
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M7 17 17 7M8 7h9v9" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+        <p class="sticker-hint" aria-hidden="true">
+          psst… stikernya bisa digeser ✦
+        </p>
+      </section>
+    </main>
+
+    <!-- ============================ FOOTER ============================ -->
+    <footer class="footer">
+      <div class="container footer__row">
+        <p>
+          © <span data-year>2026</span> Tamam &amp; Amel. Dibuat berdua dengan
+          kopi &amp; CSS modern.
+        </p>
+        <a href="#beranda" class="link-arrow"
+          >Kembali ke atas <span aria-hidden="true">↑</span></a
+        >
+      </div>
+      <p class="container egg-hint">
+        psst… ketik <kbd>amel</kbd> atau <kbd>tamam</kbd> di keyboard — atau
+        klik nama raksasa di bawah ✦
+      </p>
+      <div class="footer__big" aria-hidden="true" data-cursor="Klik ✦">
+        <span style="--i: 0">T</span><span style="--i: 1">A</span
+        ><span style="--i: 2">M</span><span style="--i: 3">A</span
+        ><span style="--i: 4">M</span
+        ><span class="amp" style="--i: 5">&amp;</span
+        ><span style="--i: 6">A</span><span style="--i: 7">M</span
+        ><span style="--i: 8">E</span><span style="--i: 9">L</span>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <a href="#beranda" class="to-top" aria-label="Kembali ke atas">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <circle class="to-top__track" cx="24" cy="24" r="21" />
+        <circle class="to-top__bar" cx="24" cy="24" r="21" pathLength="1" />
+      </svg>
+      <span aria-hidden="true">↑</span>
+    </a>
+    <div class="indicator is-hidden" aria-hidden="true">
+      <span class="indicator__num">01</span
+      ><span class="indicator__total">/ 09</span
+      ><span class="indicator__label">Tentang kami</span>
+    </div>
+    <button
+      class="cam-toggle"
+      id="camToggle"
+      type="button"
+      aria-pressed="false"
+      aria-label="Mode kamera: jepret seperti fotografer"
+      data-cursor="Mode kamera"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path
+          d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"
+        />
+        <circle cx="12" cy="13" r="3" />
+      </svg>
+    </button>
+    <div class="viewfinder" aria-hidden="true">
+      <div class="viewfinder__grid"></div>
+      <p class="viewfinder__hud viewfinder__hud--tl">
+        <span class="rec">●</span> REC · MODE AMEL
+      </p>
+      <p class="viewfinder__hud viewfinder__hud--tr">
+        ISO 400 · 1/125 · f/2.8 · ▮▮▮▯
+      </p>
+      <p class="viewfinder__hud viewfinder__hud--bl">
+        <b id="camShots">00</b> / 24 · klik untuk memotret
+      </p>
+      <p class="viewfinder__hud viewfinder__hud--br">Esc untuk keluar</p>
+      <div class="viewfinder__focus"></div>
+      <div class="viewfinder__flash"></div>
+    </div>
+    <div class="prints" aria-hidden="true"></div>
+    <div class="cursor" aria-hidden="true">
+      <span class="cursor__label"></span>
+    </div>
+  </body>
+</html>
